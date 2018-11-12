@@ -24,8 +24,8 @@ class App extends Component {
 			})
   }
 
-	showImage = () => {
-		ipcRenderer.send('toggle-image');
+	showImage = image => {
+		ipcRenderer.send('toggle-image', image);
 	}
 
   render() {
@@ -34,8 +34,9 @@ class App extends Component {
          <ul className="list-group list-group-flush">
 				 {this.state.posts.map(post => 
 						<li 
-								key={post.data.id} className="list-group-item flex-container"
-								onClick={() => this.showImage()}	
+								key={post.data.id}
+								className="list-group-item flex-container"
+								onClick={() => this.showImage(post.data.preview.images[0].source.url)}	
 						>
 								<img src={post.data.thumbnail} alt="thumb" className="thumbnail"/>
 								<div>{post.data.title}</div>

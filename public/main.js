@@ -13,11 +13,18 @@ let imageWindow;
 function createWindow() {
   mainWindow = new BrowserWindow({width: 900, height: 680, webPreferences: {webSecurity: false}});
   imageWindow = new BrowserWindow({width: 600, height: 600, parent: {mainWindow, show: false}});
+
 	mainWindow.loadURL(isDev ? 'http://localhost:3000' : `file://${path.join(__dirname, '../build/index.html')}`);
   mainWindow.on('closed', () => mainWindow = null);
 
 	imageWindow.loadURL(isDev ? 'http://localhost:3000/image' : `file://${path.join(__dirname, '../build/index.html')}`);
-  mainWindow.on('closed', () => mainWindow = null);
+  
+	mainWindow.on('closed', () => mainWindow = null);
+
+  imageWindow.on('close', (e) => {
+		e.preventDefault();
+		imageWindow.hide();
+  });
 }
 
 app.on('ready', createWindow);
@@ -36,4 +43,5 @@ app.on('activate', () => {
 
 ipcMain.on('toggle-image', (event, arg) => {
 	imageWindow.show();
+	imageWindow.webContents.send('image', arg);
 });

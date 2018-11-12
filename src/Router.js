@@ -1,13 +1,15 @@
 import React from "react";
-import App from "/App";
-import Image from ".Image";
+import { BrowserRouter, Route, Switch } from "react-router-dom";
+import Image from "./Image";
+import App from "./App";
 
-const Router = () => {
+const Router = () => (
 	<BrowserRouter>
-		<Router exact path="/" component={App} />
-		<Router exact path="/image" component={Image} />
-
+			<Switch>
+				<Route exact path="/" component={App} />
+				<Route exact path="/image" component={Image} />
+			</Switch>
 	</BrowserRouter>
-}
+);
 
 export default Router;

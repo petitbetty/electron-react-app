@@ -1,8 +1,11 @@
 {
   "ExpandedNodes": [
     "",
-    "\\public"
+    "\\electron-react-app",
+    "\\electron-react-app\\src",
+    "\\public",
+    "\\src"
   ],
-  "SelectedNode": "\\.gitignore",
+  "SelectedNode": "\\electron-react-app\\src\\index.css",
   "PreviewInSolutionExplorer": false
 }
